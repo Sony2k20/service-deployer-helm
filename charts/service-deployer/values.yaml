@@ -1,0 +1,48 @@
+fullnameOverride: service-deployer
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: latest
+
+# env: 
+#   KEY: value
+
+# envSecrets: 
+#   secretsName: secret-name
+#   secrets:
+#     KEY: value
+
+service:
+  port: 80
+  # nodePort: 30000
+
+ingress:
+  host: service.csnguyen.de
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd
+  path: /
+  pathType: Prefix
+  tlsSecret: csnguyen-tls
+
+startupProbe:
+#   httpGet:
+#     path: /
+#     port: 80
+
+persistentVolume:
+  # - name: config
+  #   mountPath: /config
+  #   subPath: 
+
+resources: 
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
