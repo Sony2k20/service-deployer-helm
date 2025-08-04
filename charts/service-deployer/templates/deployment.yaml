@@ -28,15 +28,15 @@ spec:
           startupProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if or .Values.env .Values.envSecrets }}
+          {{- if or .Values.env .Values.secretRef }}
           envFrom:
             {{- if .Values.env }}
             - configMapRef:
                 name: {{ include "helm-chart.fullname" . }}
             {{- end }}
-            {{- if .Values.envSecrets }}
+            {{- if .Values.secretRef }}
             - secretRef:
-                name: {{ include "helm-chart.fullname" . }}-secrets
+                name: {{ .Values.secretRef }}
             {{- end }}
           {{- end }}
           {{- with .Values.resources }}

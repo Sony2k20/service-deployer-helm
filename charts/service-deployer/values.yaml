@@ -10,10 +10,7 @@ image:
 # env: 
 #   KEY: value
 
-# envSecrets: 
-#   secretsName: secret-name
-#   secrets:
-#     KEY: value
+# secretRef: secretNmae
 
 service:
   port: 80
