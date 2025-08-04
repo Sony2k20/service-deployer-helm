@@ -38,12 +38,12 @@ jobs:
 
       - name: Update Chart.yaml version
         run: |
-          sed -i "s/^version: .*/version: ${{ steps.version.outputs.new_tag }}/" ./service-deployer/Chart.yaml
-          sed -i "s/^appVersion: .*/appVersion: ${{ steps.version.outputs.new_tag }}/" ./service-deployer/Chart.yaml  # Optional
+          sed -i "s/^version: .*/version: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
+          sed -i "s/^appVersion: .*/appVersion: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
 
       - name: Package Helm chart
         run: |
-          helm package ./service-deployer -d ./packaged
+          helm package ./charts/service-deployer -d ./packaged
 
       - name: Update Helm repo index
         run: |
