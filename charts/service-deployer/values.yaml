@@ -12,6 +12,8 @@ image:
 
 # secretRef: secretNmae
 
+# hostNetwork: true
+
 service:
   port: 80
   # nodePort: 30000

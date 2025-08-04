@@ -16,6 +16,9 @@ spec:
       labels:
         {{- include "helm-chart.labels" . | nindent 8 }}
     spec:
+      {{- if .Values.hostNetwork }}
+      hostNetwork: {{ .Values.hostNetwork }}
+      {{- end }}
       containers:
         - name: {{ include "helm-chart.fullname" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
