@@ -7,5 +7,5 @@ A **simple dynamic Helm chart** designed to deploy and manage **Kubernetes servi
 
 ### Add the Helm Repository
 ```bash
-helm repo add my-repo https://github.com/Sony2k20/service-deployer-helm
+helm repo add service-deployer https://github.com/Sony2k20/service-deployer-helm
 helm repo update
