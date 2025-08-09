@@ -4,6 +4,11 @@ on:
   push:
     branches: [ "master" ]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -26,20 +31,19 @@ jobs:
 
       - name: Determine next version
         id: version
-        uses: mathieudutour/github-tag-action@v6
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: ""  # No prefix at all
-          default_semver: ${{ steps.chart.outputs.current_version }}
 
       - name: Update Chart.yaml version
         run: |
-          sed -i "s/^version: .*/version: ${{ steps.version.outputs.new_tag }}/" ./service-deployer/Chart.yaml
-          sed -i "s/^appVersion: .*/appVersion: ${{ steps.version.outputs.new_tag }}/" ./service-deployer/Chart.yaml  # Optional
+          sed -i "s/^version: .*/version: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
+          sed -i "s/^appVersion: .*/appVersion: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
 
       - name: Package Helm chart
         run: |
-          helm package ./service-deployer -d ./packaged
+          helm package ./charts/service-deployer -d ./packaged
 
       - name: Update Helm repo index
         run: |
