@@ -2,6 +2,8 @@ fullnameOverride: service-deployer
 
 replicaCount: 1
 
+# updateStrategy: Recreate
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
