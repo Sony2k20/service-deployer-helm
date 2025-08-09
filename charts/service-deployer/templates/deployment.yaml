@@ -7,7 +7,8 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   {{- if .Values.updateStrategy }}
-  strategy: {{ .Values.updateStrategy }}
+  strategy: 
+    type: {{ .Values.updateStrategy }}
   {{- end }}
   selector:
     matchLabels:
