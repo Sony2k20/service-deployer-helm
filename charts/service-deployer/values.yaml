@@ -21,7 +21,7 @@ service:
   # nodePort: 30000
 
 ingress:
-  host: service.csnguyen.de
+  # host: service.csnguyen.de
   ingressClassName: traefik
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: |
