@@ -47,3 +47,12 @@ resources:
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+volumeMounts: 
+#   - name: dri
+#     mountPath: /dev/dri
+
+volumes: 
+#   - name: dri
+#     hostPath:
+#       path: /dev/dri
