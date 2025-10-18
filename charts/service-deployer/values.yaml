@@ -9,12 +9,14 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
-# env: 
+# env:
 #   KEY: value
 
 # secretRef: secretNmae
 
-# hostNetwork: true
+hostNetwork: false
+
+dailyRestart: false
 
 service:
   port: 80
@@ -38,9 +40,9 @@ startupProbe:
 persistentVolume:
   # - name: config
   #   mountPath: /config
-  #   subPath: 
+  #   subPath:
 
-resources: 
+resources:
   # limits:
   #  cpu: 100m
   #  memory: 128Mi
@@ -48,11 +50,11 @@ resources:
   #  cpu: 100m
   #  memory: 128Mi
 
-volumeMounts: 
+volumeMounts:
 #   - name: dri
 #     mountPath: /dev/dri
 
-volumes: 
+volumes:
 #   - name: dri
 #     hostPath:
 #       path: /dev/dri

@@ -1,0 +1,54 @@
+{{- if .Values.dailyRestart }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-cronjob-daily-restart
+  namespace: {{ .Release.Namespace }} 
+spec:
+  schedule: "0 5 * * *" # At 5:00 AM daily
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 0
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: {{ include "helm-chart.fullname" . }}-sa
+          containers:
+          - name: kubectl
+            image: bitnami/kubectl:latest
+            command: 
+            - /bin/sh
+            - -c
+            - kubectl delete pods -l app.kubernetes.io/name={{ include "helm-chart.name" . }} -n {{ .Release.Namespace }}
+          restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-sa
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-cronjob-role
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["delete", "list", "get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "helm-chart.fullname" . }}-cronjob-rolebinding
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "helm-chart.fullname" . }}-sa
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "helm-chart.fullname" . }}-cronjob-role
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
