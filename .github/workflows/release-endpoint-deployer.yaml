@@ -1,6 +1,7 @@
 name: Release Helm Chart for endpoint-deployer
 
 on:
+  workflow_dispatch:
   push:
     branches: ["master"]
     paths:
