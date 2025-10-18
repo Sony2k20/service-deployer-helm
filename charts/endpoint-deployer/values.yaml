@@ -1,0 +1,17 @@
+fullnameOverride: service-deployer
+
+service:
+  port: 80
+
+endpoint:
+  ip: "192.168.178.100"
+
+ingress:
+  host: service.csnguyen.de
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd
+  path: /
+  pathType: Prefix
+  tlsSecret: csnguyen-tls
