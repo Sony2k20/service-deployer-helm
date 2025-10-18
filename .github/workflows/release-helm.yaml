@@ -23,23 +23,12 @@ jobs:
         with:
           version: "v3.13.2"
 
-      - name: Get current chart version
-        id: chart
-        run: |
-          CURRENT_VERSION=$(grep '^version:' ./service-deployer/Chart.yaml | awk '{print $2}')
-          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-
       - name: Determine next version
         id: version
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: ""
-
-      - name: Update Chart.yaml version
-        run: |
-          sed -i "s/^version: .*/version: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
-          sed -i "s/^appVersion: .*/appVersion: ${{ steps.version.outputs.new_tag }}/" ./charts/service-deployer/Chart.yaml
 
       - name: Package Helm chart
         run: |
