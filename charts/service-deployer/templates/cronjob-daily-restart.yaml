@@ -19,7 +19,7 @@ spec:
             command: 
             - /bin/sh
             - -c
-            - kubectl delete pods -l app.kubernetes.io/name={{ include "helm-chart.name" . }} -n {{ .Release.Namespace }}
+            - kubectl delete pods -l app.kubernetes.io/name={{ include "helm-chart.fullname" . }} -n {{ .Release.Namespace }}
           restartPolicy: OnFailure
 ---
 apiVersion: v1
