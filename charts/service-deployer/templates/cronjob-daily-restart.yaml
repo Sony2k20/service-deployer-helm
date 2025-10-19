@@ -1,11 +1,11 @@
-{{- if .Values.dailyRestart }}
+{{- if .Values.dailyRestart.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ include "helm-chart.fullname" . }}-cronjob-daily-restart
   namespace: {{ .Release.Namespace }} 
 spec:
-  schedule: "0 5 * * *" # At 5:00 AM daily
+  schedule: {{ .Values.dailyRestart.schedule }}
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 0
   jobTemplate:

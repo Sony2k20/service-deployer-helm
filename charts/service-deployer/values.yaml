@@ -16,7 +16,9 @@ image:
 
 hostNetwork: false
 
-dailyRestart: false
+dailyRestart:
+  enabled: false
+  schedule: "0 5 * * *" # At 5:00 AM daily
 
 service:
   port: 80
