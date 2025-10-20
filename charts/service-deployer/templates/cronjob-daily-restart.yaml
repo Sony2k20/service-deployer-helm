@@ -6,8 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace }} 
 spec:
   schedule: {{ .Values.dailyRestart.schedule }}
-  successfulJobsHistoryLimit: 0
-  failedJobsHistoryLimit: 0
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
       template:
