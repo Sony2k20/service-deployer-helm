@@ -15,8 +15,6 @@ spec:
       {{- include "helm-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      annotations:
-        deploymentTime: {{ now }}
       labels:
         {{- include "helm-chart.labels" . | nindent 8 }}
     spec:
