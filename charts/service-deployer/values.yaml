@@ -37,6 +37,7 @@ ingress:
       kube-system-redirect-https@kubernetescrd
   path: /
   pathType: Prefix
+  serviceName: http
   tlsSecret: csnguyen-tls
 
 startupProbe:
