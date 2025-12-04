@@ -19,7 +19,9 @@ spec:
             pathType: {{.Values.ingress.pathType }}
             backend:
               service:
-                name: {{.Values.ingress.serviceName }}
+                name: {{ include "helm-chart.fullname" . }}
+                port:
+                  name: {{ .Values.ingress.serviceName }}
   tls:
     - hosts:
        - {{.Values.ingress.host }}
