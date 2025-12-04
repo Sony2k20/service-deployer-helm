@@ -6,8 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace }} 
 spec:
   schedule: {{ .Values.dailyRestart.schedule }}
-  successfulJobsHistoryLimit: 0
-  failedJobsHistoryLimit: 0
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
       template:
@@ -36,7 +36,7 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["pods"]
-  verbs: ["delete", "list", "get"]
+  verbs: ["delete", "list", "get", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
