@@ -26,6 +26,10 @@ spec:
         - name: {{ include "helm-chart.fullname" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.commands.enabled }}
+          command: {{ toYaml .Values.commands.command | nindent 12 }}
+          args: {{ toYaml .Values.commands.args | nindent 12 }}
+          {{- end }}
           ports:
           {{- if .Values.service.ports }}
             {{- range .Values.service.ports }}

@@ -9,6 +9,11 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
+# commands:
+#   enabled: true
+#   command: ["/bin/sh", "-c"]
+#   args: ["sleep infinity"]
+
 # env:
 #   KEY: value
 
