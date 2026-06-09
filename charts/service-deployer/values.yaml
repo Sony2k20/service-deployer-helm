@@ -10,7 +10,7 @@ image:
   tag: latest
 
 commands:
-#   enabled: true
+  enabled: false
 #   command: ["/bin/sh", "-c"]
 #   args: ["sleep infinity"]
 
