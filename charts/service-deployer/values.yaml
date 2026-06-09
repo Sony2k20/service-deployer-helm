@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
-# commands:
+commands:
 #   enabled: true
 #   command: ["/bin/sh", "-c"]
 #   args: ["sleep infinity"]
