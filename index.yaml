@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   service-deployer:
   - apiVersion: v2
+    appVersion: 1.0.25
+    created: "2026-07-16T19:49:46.364319896Z"
+    description: A simple dynamic Helm chart designed to deploy and manage Kubernetes
+      services with flexible configurations.
+    digest: 1c65fc448219850658dee590c379e94034ba39913d20d1ef20707b1c265b3c92
+    name: service-deployer
+    type: application
+    urls:
+    - https://Sony2k20.github.io/service-deployer-helm/service-deployer-1.0.25.tgz
+    version: 1.0.25
+  - apiVersion: v2
     appVersion: 1.0.24
     created: "2026-07-16T19:12:39.5509664Z"
     description: A simple dynamic Helm chart designed to deploy and manage Kubernetes
@@ -210,4 +221,4 @@ entries:
     urls:
     - https://Sony2k20.github.io/service-deployer-helm/service-deployer-1.0.6.tgz
     version: 1.0.6
-generated: "2026-07-16T19:12:39.550490421Z"
+generated: "2026-07-16T19:49:46.363849611Z"
