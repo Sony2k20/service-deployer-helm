@@ -21,6 +21,12 @@ commands:
 
 hostNetwork: false
 
+securityContext:
+  enabled: false
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+
 dailyRestart:
   enabled: false
   schedule: "0 5 * * *" # At 5:00 AM daily
