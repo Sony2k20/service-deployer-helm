@@ -41,6 +41,7 @@ service:
       # nodePort: 30000
 
 ingress:
+  enabled: false
   host: service.csnguyen.de
   ingressClassName: traefik
   annotations:
@@ -50,6 +51,22 @@ ingress:
   pathType: Prefix
   serviceName: http
   tlsSecret: csnguyen-tls
+
+# Alternative to ingress: Traefik's native IngressRoute CRD.
+# Requires the Traefik CRDs to be installed in the cluster.
+ingressRoute:
+  enabled: false
+  annotations: {}
+  entryPoints:
+    - websecure
+  host: service.csnguyen.de
+  path: /
+  servicePort: http
+  middlewares:
+    - name: redirect-https
+      namespace: kube-system
+  tls:
+    secretName: csnguyen-tls
 
 startupProbe:
 #   httpGet:
