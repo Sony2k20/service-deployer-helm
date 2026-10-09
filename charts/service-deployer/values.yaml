@@ -107,6 +107,15 @@ resources:
   #  cpu: 100m
   #  memory: 128Mi
 
+initContainers: []
+#   - name: download-content
+#     image: alpine/git:2.47.2
+#     command: ["sh", "-c"]
+#     args: ["git clone ... /src"]
+#     volumeMounts:
+#       - name: content
+#         mountPath: /usr/share/nginx/html
+
 volumeMounts:
 #   - name: dri
 #     mountPath: /dev/dri
