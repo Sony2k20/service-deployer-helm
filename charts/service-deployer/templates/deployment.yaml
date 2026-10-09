@@ -28,6 +28,9 @@ spec:
       {{- if .Values.hostNetwork }}
       hostNetwork: {{ .Values.hostNetwork }}
       {{- end }}
+      {{- if or .Values.serviceAccount.create .Values.serviceAccount.name }}
+      serviceAccountName: {{ include "helm-chart.serviceAccountName" . }}
+      {{- end }}
       containers:
         - name: {{ include "helm-chart.fullname" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"

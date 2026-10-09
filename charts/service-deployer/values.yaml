@@ -78,6 +78,27 @@ persistentVolume:
   #   mountPath: /config
   #   subPath:
 
+# A ConfigMap with one key per file, mounted as a volume (named {{ fullname }}-files).
+# Reference it yourself via volumes/volumeMounts.
+fileConfigMap:
+  enabled: false
+  data: {}
+  #   settings.yaml: |
+  #     title: Example
+
+serviceAccount:
+  create: false
+  name: ""
+
+# Cluster-scoped RBAC for the pod's serviceAccount.
+# Set serviceAccount.create: false + serviceAccount.name to reuse an existing one instead.
+rbac:
+  enabled: false
+  rules: []
+  #   - apiGroups: [""]
+  #     resources: ["namespaces", "pods", "nodes"]
+  #     verbs: ["get", "list"]
+
 resources:
   # limits:
   #  cpu: 100m
