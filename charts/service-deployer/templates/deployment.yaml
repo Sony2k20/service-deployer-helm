@@ -16,6 +16,16 @@ spec:
       {{- include "helm-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- /* Roll the pods whenever a ConfigMap rendered by this chart changes. */}}
+      {{- if or .Values.env .Values.fileConfigMap.enabled }}
+      annotations:
+        {{- if .Values.env }}
+        checksum/config: {{ include (print $.Template.BasePath "/config-map.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if .Values.fileConfigMap.enabled }}
+        checksum/config-files: {{ include (print $.Template.BasePath "/configmap-files.yaml") . | sha256sum }}
+        {{- end }}
+      {{- end }}
       labels:
         {{- include "helm-chart.labels" . | nindent 8 }}
     spec:
